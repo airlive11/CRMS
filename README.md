@@ -5,8 +5,10 @@ Criminal Record Management System
  2. Sneha Dutta
  3. Rehana Khatun
  4. Ayan Das
-# Department - Computer Science
-# College Name - Vivekananda College,Madhyamgram
+Department - 
+Computer Science
+College Name - 
+Vivekananda College,Madhyamgram
 # The Criminal Record Management System is a web-based application designed to efficiently manage and organize criminal records. 
 It provides a comprehensive platform for law enforcement agencies and legal professionals to store, retrieve, and analyze criminal data in a secure and user-friendly manner.
 # Features
