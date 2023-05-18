@@ -16,3 +16,12 @@ Integration with External Systems: The system supports integration with other cr
 Audit Trail: Every action within the system is logged, creating an audit trail that tracks user activities, ensuring accountability, and aiding in investigations if any security concerns arise.
 
 Data Security: The system implements robust security measures to protect sensitive information. It utilizes encryption, role-based access control, and regular backups to maintain data integrity and prevent unauthorized access.
+
+# Technologies used by us: -----
+The Criminal Record Management System is built using the following technologies:
+Frontend: HTML, CSS, JavaScript, React.js
+Backend: Node.js, Express.js
+Database: MySQL, MongoDB, or PostgreSQL (can be configured based on preference)
+Authentication: JSON Web Tokens (JWT)
+Data Visualization: D3.js or Chart.js (based on preference)
+Version Control: Git
