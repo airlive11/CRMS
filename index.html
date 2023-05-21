@@ -1,62 +1,154 @@
 <!DOCTYPE html>
-<html lang ="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Login & Registration| CRMS</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h2 class="logo">Logo</h2>
-            <nav class ="navigation">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Contact</a>
-                <button class="btnlogin-popup">Login</button>
-            </nav>
-        </header>
-        <div class="wrapper">
-            <span class="icon-close">
-                <ion-icon name="close-circle-outline"></ion-icon>
-            </span>
-            <div class="form-box Login">
-                <h2>Login</h2>
-                <form action="#">
-                    <div class="input-box">
-                        <span class = "icon">
-                            <ion-icon name="mail-outline"></ion-icon>
-                        </span>
-                        <input type = "email" required>
-                        <label>E-mail</label>
-                </form>
-            </div>
-            <div class="input-box">
-                <span class = "icon">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                    <input type = "password" required>
-                    <label>Password</label>
-                </span>
-            </div>
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox">
-                    Remember me
-                </label>
-                <a href="#">Forgot password?</a>
-            </div>
-            <button type="submit" class="btn">Login</button>
-            <div class="login-register">
-                <p>Don't have an account?
-                    <a href="#" class="register-link"></a>
-                </p>
-            </div>
-    </div>
+<html lang="en">
+<head>
+  <title>CRMS|Main</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="assets/blacklogo.png" type="image/icon type">
         <script src="script.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    </body>
+</head>
+<body>
 
+<!-- NAVBAR -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html"><img src="assets/logoblk.png" width="60px"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/"> Home </a></li>
+        <li><a href="about"> About Us </a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Records <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="search.html"> Search Records </a></li>
+            <li style="cursor: pointer;"><a onclick="loginauth1()"> Add Criminal Records </a></li>
+            <li style="cursor: pointer;"><a href="modify.html"> Modify Criminal Records </a></li>
+            <li style="cursor: pointer;"><a href="delete.html"> Delete Criminal Records </a></li>
+          </ul>
+        </li>
+            <li><a href="contact.html"> Emergency Numbers </a></li>
+<!-- MODAL LOGIN BUTTONS -->
+            <li>
+              <button class="btn" id="loginbtn" data-toggle="modal" data-target="#popUpWindow">
+                <span class="glyphicon glyphicon-log-in" ></span> 
+                Log In 
+              </button>
+              </li>
+            <li>
+              <button class="btn" id="btnLogout" style="display: none;" onclick="logout()"> 
+                <span class="glyphicon glyphicon-log-out"></span> 
+                Log Out 
+              </button>
+            </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- MODAL LOGIN -->
+<div class="container">  
+  <div class="modal fade" id="popUpWindow">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div id="login_div">
+        <!-- header -->
+        <div class="modal-header">
+          <h3 class="modal-title">Login</h3>
+        </div>
+        <!-- body -->
+        <div class="modal-header">
+          <form role="form">
+            <div class="form-group">
+              <input type="email" id= "txtEmail" class="form-control" placeholder="Email"/>
+              <br>
+              <input type="password" id="txtPassword" class="form-control" placeholder="Password" />
+              <br>
+              <input type="button" onclick="myFunction()" onmouseover="myFunction()" onmouseout="myFunction()" value="Show Password">
+            </div>
+          </form>
+        </div>
+        <!-- footer -->
+        <div class="modal-footer">
+          <button class="btn btn-block" id="btnLogin" onclick="login()">Log In</button>
+        </div>
+        </div>
+      <!-- success -->
+      <div id="user_div" class="modal-success" style="display: none;">
+        <h3 class="modal-title" style="text-align: center;">Logged In Successfully !!</h3>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL LOGIN ENDS -->
+
+
+<div class="logo">
+  <img src="assets/background.jpg">
+  <img src="assets/thanastrt.png" class="imgmobile">
+  <p class="mob"> A Complete Solution for Criminal Records</p>
+</div>
+
+
+<!-- Footer -->
+<div class="footer">
+  <div class="f1">
+    <p class="linkfooter">
+      <img src="assets/logoblk.png" width="80px">
+      <br>
+      <br>
+      <a class="footerlink" href="index.html"> Home </a>
+      <br>
+      <a class="footerlink" href="about.html"> About Us </a>
+      <br>
+      <a class="footerlink" href="search.html"> Search Records </a>
+      <br>
+      <a class="footerlink" href="contact.html"> Emergency Numbers </a>
+    </p>
+  </div>
+  <div class="f2">
+    <p>
+      Project By:
+      <br>
+      Sakshya Bhattacharya(1422111400194)
+      <br>
+      Rehena Khatun
+      <br>
+      Sneha Dutta
+      <br>
+      Ayan Das
+      <br>
+    </p>
+  </div>
+  <br><br><br><br><br><br><br>
+  <hr color="red">
+        <span class="fl">
+            &copy; Sakshya,Rehena,Ayan,Sneha 2023, Version 1.0
+        </span>
+</div>
+<!-- End of Footer -->
+
+
+<!-- JS for LoginAuth -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script src="script.js"></script>
+</body>
 </html>
