@@ -1,6 +1,6 @@
 # CRMS
 Criminal Record Management System
-# Project By -
+# Project By (under developed)-
  1. Sakshya Bhattacharya
  2. Sneha Dutta
  3. Rehana Khatun
