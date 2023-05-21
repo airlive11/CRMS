@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>THANA</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="formstyle.css">
+        <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="assets/blacklogo.png" type="image/icon type">
+      </head>
+<body style="background-color: #bbbbbb;">
+<!-- NAVBAR -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html"><img src="assets/logoblk.png" width="60px"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html"> Home </a></li>
+        <li><a href="about.html"> About Us </a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle active" data-toggle="dropdown" href="#"> Records <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="search.html"> Search Records </a></li>
+            <li style="cursor: pointer;"><a onclick="loginauth1()"> Add Criminal Records </a></li>
+            <li style="cursor: pointer;"><a href="modify.html"> Modify Criminal Records </a></li>
+            <li style="cursor: pointer;"><a href="delete.html"> Delete Criminal Records </a></li>
+          </ul>
+        </li>
+            <li><a href="contact.html"> Emergency Numbers </a></li>
+<!-- MODAL LOGIN BUTTONS -->
+            <li>
+              <button class="btn" id="loginbtn" data-toggle="modal" data-target="#popUpWindow">
+                <span class="glyphicon glyphicon-log-in" ></span> 
+                Log In 
+              </button>
+              </li>
+            <li>
+              <button class="btn" id="btnLogout" style="display: none;" onclick="logout()"> 
+                <span class="glyphicon glyphicon-log-out"></span> 
+                Log Out 
+              </button>
+            </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- MODAL LOGIN -->
+<div class="container">  
+  <div class="modal fade" id="popUpWindow">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div id="login_div">
+        <!-- header -->
+        <div class="modal-header">
+          <h3 class="modal-title">Login</h3>
+        </div>
+        <!-- body -->
+        <div class="modal-header">
+          <form role="form">
+            <div class="form-group">
+              <input type="email" id= "txtEmail" class="form-control" placeholder="Email"/>
+              <br>
+              <input type="password" id="txtPassword" class="form-control" placeholder="Password" />
+              <br>
+              <input type="button" onclick="myFunction()" onmouseover="myFunction()" onmouseout="myFunction()" value="Show Password">
+            </div>
+          </form>
+        </div>
+        <!-- footer -->
+        <div class="modal-footer">
+          <button class="btn btn-block" id="btnLogin" onclick="login()">Log In</button>
+        </div>
+        </div>
+      <!-- success -->
+      <div id="user_div" class="modal-success" style="display: none;">
+        <h3 class="modal-title" style="text-align: center;">Logged In Successfully !!</h3>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JS for SHOW PASSWORD -->
+<script>
+  function myFunction() {
+ var x = document.getElementById("txtPassword");
+ if (x.type === "password") {
+   x.type = "text";
+ } else {
+   x.type = "password";
+ }
+}
+</script>
+<!-- MODAL LOGIN ENDS -->  
+<!-- FORM -->
+<div class="form-style-10">
+    <h1>Add to Criminal Record<span>Enter the Details of the Criminal</span></h1>
+    <form id="addCriminal">
+        <div class="section"><span>1</span>Personal Information</div>
+        <div class="inner-wrap">
+            <label>Full Name* <input type="text" id="cName" required></label>
+            <label>Gender*<br>
+                <input type="radio" id="cGender" name="gender" value="Male" required>Male
+                <input type="radio" id="cGender" name="gender" value="Female" required>Female
+                <input type="radio" id="cGender" name="gender" value="Other" required>Other
+            </label>
+            <label>Education <textarea id="cEducation"></textarea></label>
+            <label>Date of Birth* <input type="date" id="cDOB" required></label>
+            <label>Address<textarea id="cAdd"></textarea></label>
+            <label>Address of Hometown<textarea id="cHomeAdd"></textarea></label>
+            <label>Phone Number* <input type="tel" id="cPhone" pattern="[0-9]{10}" placeholder="10 Digits Phone Number Only" required></label>
+            <label>E-Mail Id <input type="email" id="cMail"></label>
+            <label>Father's Name <input type="text" id="cFather"></label>
+            <label>Mother's Name <input type="text" id="cMother"></label>
+            <label>Spouse's Name (if applicable) <input type="text" id="cSpouse"></label>
+        </div>
+    
+        <div class="section"><span>2</span>Identification Details</div>
+        <div class="inner-wrap">
+            <label>Height (in cms) <input type="number" id="cHeight" min="0"></label>
+            <label>Weight (in kgs) <input type="number" id="cWeight" min="0"></label>
+            <label>Skin Colour <select id="cSkin">
+                <option value="" disabled selected hidden> Select </option>
+                <option value="Very Fair"> Very Fair </option>
+                <option value="Fair"> Fair </option>
+                <option value="Medium"> Medium </option>
+                <option value="Olive">Olive </option>
+                <option value="Brown">Brown </option>
+                <option value="Dark Brown"> Dark Brown </option>
+                </select>
+            </label>
+            <label>Body Type 
+                <select id="cBody">
+                <option value="" disabled selected hidden> Select </option>
+                <option value="Skinny"> Skinny </option>
+                <option value="Athletic"> Athletic </option>
+                <option value="Bulky"> Bulky </option>
+                </select>
+            </label>
+            <label>Birth Mark (if any) <input type="text" id="cMark"></label>  
+        </div>
+    
+        <div class="section"><span>3</span>Past History</div>
+        <div class="inner-wrap">
+            <label>History of Crimes<textarea id="cCrimes"></textarea></label>
+            <label>Awards Announced by Various Agencies (if caught) <textarea id="cAwards"></textarea></label>
+        </div>
+        <div class="section"><span>4</span>Contact Persons</div>
+        <div class="inner-wrap">
+            <label>Format: Name & Relation (with Mobile Number) <textarea id="cContact"></textarea></label>
+        </div>
+
+        <div class="button-section">
+         <button id="submitForm" onclick="added()"> Add Record</button>         
+        </div>
+    </form>
+    </div>
+<!-- FORM ENDS -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCnbcOpPwZDdKvlSz-cVFfXAME-VIjaVV8",
+    authDomain: "test-622c0.firebaseapp.com",
+    databaseURL: "https://test-622c0.firebaseio.com",
+    projectId: "test-622c0",
+    storageBucket: "test-622c0.appspot.com",
+    messagingSenderId: "81335831834",
+    appId: "1:81335831834:web:816865eafc5607b19970a3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+<script>
+var contactRef = firebase.database().ref().child("criminalRecord");
+
+document.getElementById("addCriminal").addEventListener("submit",submitForm);
+
+function submitForm(e){
+    e.preventDefault();
+
+    var Name = getInputVal("cName");
+    var Gender = getInputVal("cGender");
+    var Education = getInputVal("cEducation");
+    var DOB = getInputVal("cDOB");
+    var Add = getInputVal("cAdd");
+    var Home_Add = getInputVal("cHomeAdd");
+    var Phone = getInputVal("cPhone");
+    var Mail = getInputVal("cMail");
+    var Father = getInputVal("cFather");
+    var Mother = getInputVal("cMother");
+    var Spouse = getInputVal("cSpouse");
+
+    var Height = getInputVal("cHeight");
+    var Weight = getInputVal("cWeight");
+    var Skin = getInputVal("cSkin");
+    var Body = getInputVal("cBody");
+    var Mark = getInputVal("cMark");
+    
+    var History = getInputVal("cCrimes");
+    var Awards = getInputVal("cAwards");
+
+    var Contact = getInputVal("cContact");
+
+
+    saveForm(Name, Gender, Education, DOB, Add, Home_Add, Phone, Mail, Father, Mother, Spouse, Height, Weight, Skin, Body, Mark, History, Awards, Contact);
+    document.getElementById('addCriminal').reset();
+}
+
+function getInputVal(id){
+    return document.getElementById(id).value;
+}
+ 
+function saveForm(Name, Gender, Education, DOB, Add, Home_Add, Phone, Mail, Father, Mother, Spouse, Height, Weight, Skin, Body, Mark, History, Awards, Contact){
+  
+  var user = firebase.auth().currentUser;
+    if (user)
+    {
+      var newContactRef = contactRef.push();
+      newContactRef.set({
+      Name: Name,
+      Gender: Gender,
+      Education: Education,
+      DOB: DOB,
+      Address: Add, 
+      Hometown_Adress: Home_Add,
+      Phone_Number: Phone,
+      Mail_ID: Mail,
+      Father: Father,
+      Mother: Mother,
+      Spouse: Spouse,
+      Height: Height,
+      Weight: Weight,
+      Skin_Colour: Skin,
+      Body_Type: Body,
+      Birth_Marks: Mark,
+      Crime_History: History,
+      Awards: Awards,
+      Contact_Persons: Contact
+  }, function(error) {
+      if (error) {
+      // The write failed...
+      window.alert("Server Error, Please Try Again !!");
+    } else {
+      // Data saved successfully!
+      window.alert("Record Added Successfully !!")
+    }
+  });
+    }
+    else
+    {
+      window.alert("Login to Add in Criminal Record");
+    }
+  
+}
+</script>
+
+
+<!-- Footer -->
+<div class="footer">
+  <div class="f1">
+    <p class="linkfooter">
+      <img src="assets/logoblk.png" width="80px">
+      <br>
+      <br>
+      <a class="footerlink" href="index.html"> Home </a>
+      <br>
+      <a class="footerlink" href="about.html"> About Us </a>
+      <br>
+      <a class="footerlink" href="search.html"> Search Records </a>
+      <br>
+      <a class="footerlink" href="contact.html"> Emergency Numbers </a>
+    </p>
+  </div>
+  <div class="f2">
+    <p>
+      Project By:
+      <br>
+      Anmol Bansal (19BCE0630)
+      <br>
+      Gokul Nair (19BCE2245)
+      <br>
+      Harsh Londhekar (19BCE0496)
+      <br>
+      Suyash Johri (19BCE2201)
+      <br>
+    </p>
+  </div>
+  <br><br><br><br><br><br><br>
+  <hr color="red">
+        <span class="fl">
+          &copy; Anmol Bansal, 2020, Version 1.4 (This website is for representation purpose only)
+        </span>
+</div>
+<!-- End of Footer -->
+
+
+<!-- JS for LoginAuth -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCnbcOpPwZDdKvlSz-cVFfXAME-VIjaVV8",
+    authDomain: "test-622c0.firebaseapp.com",
+    databaseURL: "https://test-622c0.firebaseio.com",
+    projectId: "test-622c0",
+    storageBucket: "test-622c0.appspot.com",
+    messagingSenderId: "81335831834",
+    appId: "1:81335831834:web:816865eafc5607b19970a3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+  //on auth state change
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) 
+    {
+      // User is signed in.
+      document.getElementById("user_div").style.display = "block";
+      document.getElementById("login_div").style.display = "none";
+      document.getElementById("btnLogout").style.display = "block";
+      document.getElementById("loginbtn").style.display = "none";
+    } 
+    else 
+    {
+      // No user is signed in.
+      document.getElementById("user_div").style.display = "none";
+      document.getElementById("login_div").style.display = "block";
+      document.getElementById("btnLogout").style.display = "none";
+      document.getElementById("loginbtn").style.display = "block";
+    }
+  });
+
+  //for login 
+  function login()
+  {
+    var txtEmail = document.getElementById("txtEmail").value;
+    var txtPass = document.getElementById("txtPassword").value;
+
+    firebase.auth().signInWithEmailAndPassword(txtEmail, txtPass).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      window.alert(errorMessage);
+      // ...
+    });
+  }
+  
+  //for logout
+  function logout(){
+    firebase.auth().signOut();
+    location.reload(); 
+  }
+
+  //for add records authorisation
+  function loginauth1()
+    {
+      var user = firebase.auth().currentUser;
+      if (user)
+      {
+        location.replace("add.html");
+      }
+      else
+      {
+        window.alert("Login to Add in Criminal Record");
+      }
+    }
+</script>
+<!-- JS for LoginAuth Ends --></body>
+</html>
